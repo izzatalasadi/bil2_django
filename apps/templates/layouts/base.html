@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    <!-- Page meta and link goes HERE  -->
+    {% include 'includes/links_meta.html' %}
+    {% include 'includes/scripts.html' %}
+
+    <title>{% block title %}{% endblock %}</title>
+    
+    <!-- Specific Page CSS goes HERE  -->
+    {% block stylesheets %} {% endblock %}
+  </head>
+  
+  
+  <body class="{% block body_class %}{% endblock %}">
+    
+    
+    {% block spinner %}
+    {% include 'includes/spinner.html' %}
+    {% endblock %}
+
+    <header>
+      
+      <!-- Body navbar goes HERE  -->
+      {% block nav %}
+      {% include 'includes/nav.html' %}
+      {% endblock %}
+
+      {% block page_header %} 
+      <!-- Page Header Start -->
+      <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+          <div class="container">
+              <h1 class="display-3 mb-4 animated slideInDown">{% block header %}{% endblock %}</h1>
+              <nav aria-label="breadcrumb animated slideInDown">
+                  <ol class="breadcrumb mb-0">
+                      <li class="breadcrumb-item"><a href="/">Hjem</a></li>
+                      <li class="breadcrumb-item active" aria-current="page"><a href="{% block href %}{% endblock %}">{% block page %}{% endblock %}</a></li>
+                  </ol>
+              </nav>
+          </div>
+      </div> 
+      {% endblock %}
+      <!-- Body Header goes HERE  -->
+    </header>
+
+    {% block body_content %} 
+
+    <!-- Body footer goes HERE  -->
+    
+
+
+    {% endblock %}
+    
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top">
+      <i class="bi bi-arrow-up"></i></a>
+  </body>  
+    <!-- Footer goes HERE  -->
+    {% block footer %}
+    <footer>
+      {% include 'includes/footer.html' %}
+    </footer>
+    {% endblock %}
+  
+</html>

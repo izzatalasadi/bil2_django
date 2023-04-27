@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    container_name: bil2-container
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=my-secret-key
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web
+
+volumes:
+  static:
+
+networks:
+  mynetwork:
