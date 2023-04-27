@@ -10,9 +10,3 @@ class MyAppConfig(AppConfig):
     name = 'apps.home'
     DEFAULT_AUTO_FIELD = BigAutoField
     
-    def ready(self):
-        process = CrawlerProcess(get_project_settings())
-        process.crawl(FinnCarSpider)
-        process.start()
-        process.stop()
-    
