@@ -25,7 +25,7 @@ DEBUG = env('DEBUG')
 ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets')
 
 # load production server from .env
-ALLOWED_HOSTS = ['localhost', 'localhost:85', '127.0.0.1','0.0.0.0',# '192.168.1.9',
+ALLOWED_HOSTS = ['localhost', 'localhost:85', '127.0.0.1', '0.0.0.0',  # '192.168.1.9',
                  env('SERVER', default='127.0.0.1')]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1'
                         'https://' + env('SERVER', default='127.0.0.1')]
@@ -50,8 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'apps.home.apps.MyAppConfig',
-    'apps.home.run_crawler',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +88,9 @@ TEMPLATES = [
         },
     },
 ]
+CRONJOBS = [
+    ('* * * * * home.celery.run_crawler')
+]
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -98,8 +101,8 @@ if os.environ.get('DB_ENGINE') and os.environ.get('DB_ENGINE') == "mysql":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.getenv('DB_NAME', 'appseed_db'),
-            'USER': os.getenv('DB_USERNAME', 'appseed_db_usr'),
+            'NAME': os.getenv('DB_NAME', 'db'),
+            'USER': os.getenv('DB_USERNAME', 'db_usr'),
             'PASSWORD': os.getenv('DB_PASS', 'pass'),
             'HOST': os.getenv('DB_HOST', 'localhost'),
             'PORT': os.getenv('DB_PORT', 3306),
