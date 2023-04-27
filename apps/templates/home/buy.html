@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+{% block title %}Kjøp{% endblock %}
+{% block header %}Kjøp{% endblock %}
+{% block page %}Kjøp{% endblock %}
+{% block href %}/buy/{% endblock %}
+
+{% block body_content %}
+<div class="container-xxl py-5">
+  <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+      <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Kjøp</p>
+      <h1 class="display-5 mb-5">Kjøp en bilen til den rette prisen</h1>
+  </div>
+  <div class="row">
+      <div class="col-lg">
+      {% include 'includes/shop_sidebar.html' %}
+      </div>
+  </div>
+  <div class='row'>
+    <div class="col-lg">
+      {% include 'includes/shop_content.html' %}
+    </div>
+    {% include 'includes/shop_paging.html' %}
+  </div>
+</div>
+
+
+{% endblock %}
