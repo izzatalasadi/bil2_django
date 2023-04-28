@@ -1,29 +1,28 @@
-version: '3'
-
+version: '3.8'
 services:
-  web:
-    build: .
-    container_name: bil2-container
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
+  bil2-app:
+    container_name: bil2-app
     restart: always
-    ports:
-      - "8000:8000"
-    environment:
-      - DEBUG=True
-      - SECRET_KEY=my-secret-key
+    env_file: .env
+    build: .
+    networks:
+      - db_network
+      - web_network
   nginx:
-    image: nginx:latest
+    container_name: nginx
+    restart: always
+    image: "nginx:latest"
     ports:
-      - "80:80"
+      - "5085:5085"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - web
-
-volumes:
-  static:
-
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - web_network
+    depends_on: 
+      - appseed-app
 networks:
-  mynetwork:
+  db_network:
+    driver: bridge
+  web_network:
+    driver: bridge
+ 

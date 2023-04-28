@@ -1,30 +1,19 @@
-# Base image
 FROM python:3.9
 
-# options
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
- 
 
-# update docker-iamage packages
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y netcat-openbsd gcc && \
-    apt-get clean
+COPY requirements.txt ./
 
-# Set the working directory
-WORKDIR /app
+# install python dependencies
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the requirements file and install dependencies
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+COPY . ./
 
-# Copy the application code
-COPY . .
+# running migrations
+RUN python manage.py migrate
 
-
-# Expose port 80
-EXPOSE 80
-
-# Start the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
-
+# gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5005", "core.wsgi:application"]
