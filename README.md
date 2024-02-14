@@ -11,4 +11,4 @@
 * make virtual env. and activate it
 * change working directory to where the `manage.py` file is 
 * Install the requirments:`pip install requirments.txt`
-* run project: `python manage.py runserver
+* run project: `python manage.py runserver`
