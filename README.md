@@ -4,8 +4,8 @@
 
 ## steps to run the project
 ### Using docker
-* docker build -t car .
-* docker run -p 8080:80 -e ENV_VARIABLE=value car
+* `docker build -t car .`
+* `docker run -p 8080:80 -e ENV_VARIABLE=value car`
 
 ### using Django server
 * make virtual env. and activate it
