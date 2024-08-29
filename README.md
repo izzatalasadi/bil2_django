@@ -69,7 +69,3 @@ Here are some snapshots of the application:
 
   * and more
 
-
-Scraping Results
-
-
