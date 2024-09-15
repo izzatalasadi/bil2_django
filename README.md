@@ -1,6 +1,6 @@
-# bil2_django
+# Car dealer
 
-**bil2_django** is a comprehensive web application built with Django, designed specifically for a car company. This project showcases a robust integration of backend and frontend technologies, including web scraping, Docker, and modern UI frameworks.
+**Car dealer** is a comprehensive web application built with Django, designed specifically for a car company. This project showcases a robust integration of backend and frontend technologies, including web scraping, Docker, and modern UI frameworks.
 
 ## Features
 
